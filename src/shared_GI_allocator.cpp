@@ -14,7 +14,8 @@ SharedGIAllocator::SharedGIAllocator(GPU &device)
     : Allocator(device), gpu_instance_(device_, A100_N_SLICES) {
 }
 
-unsigned int SharedGIAllocator::remaining(unsigned short n_slices) const noexcept {
+unsigned int
+SharedGIAllocator::remaining(unsigned short n_slices) const noexcept {
     return gpu_instance_.remaining_compute_instance_capacity(n_slices);
 }
 

@@ -2,13 +2,13 @@
 
 #include <list>
 #include <set>
-#include <string>
 #include <sstream>
+#include <string>
 
 template <typename T>
 constexpr void multiset_sum(std::list<std::multiset<T>> &ret,
-                  const std::multiset<T> &incomplete_multiset, T n,
-                  const std::set<T, std::greater<T>> &values) {
+                            const std::multiset<T> &incomplete_multiset, T n,
+                            const std::set<T, std::greater<T>> &values) {
     auto smaller_values = values;
     for (T next : values) {
         if (next > n) {

@@ -68,8 +68,7 @@ std::string vector_to_string(const std::vector<T> &vec) {
     return ss.str();
 }
 
-void allocation_order(
-    mut::Allocator &allocator, unsigned int use_slices) {
+void allocation_order(mut::Allocator &allocator, unsigned int use_slices) {
     // hard-coded for A100 slice sizes
     const auto all_slice_groups = multiset_sum(use_slices, {1, 2, 3, 4, 7});
     for (auto slices : all_slice_groups) {

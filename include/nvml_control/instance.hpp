@@ -26,11 +26,12 @@ public:
     GPU(int device) noexcept;
 
     /**
-     * @brief Gets the number of concurrent GPU Instances 
+     * @brief Gets the number of concurrent GPU Instances
      * that can be allocated
      * @param n_slices n_slices the number of slices in each GPU Instance
      */
-    unsigned int remaining_gpu_instance_capacity(unsigned short n_slices) const noexcept;
+    unsigned int
+    remaining_gpu_instance_capacity(unsigned short n_slices) const noexcept;
 
 private:
     /**
@@ -50,15 +51,16 @@ private:
      */
     unsigned int
     look_up_compute_instance_profile_id(unsigned short n_slices) const;
-    friend class ComputeInstance;  // for access to look_up_compute_instance_profile_id
+    friend class ComputeInstance;  // for access to
+                                   // look_up_compute_instance_profile_id
 };
 
 class GPUInstance {
 private:
     bool valid_{false};
     friend class Allocator;  // for access to valid_
-    GPU const * gpu_;
-    friend class ComputeInstance;  // for access to gpu_ 
+    GPU const *gpu_;
+    friend class ComputeInstance;  // for access to gpu_
     nvmlGpuInstance_t instance_;
     friend class ComputeInstance;  // for access to instance_;
 
@@ -76,8 +78,8 @@ public:
     GPUInstance &operator=(GPUInstance &&rhs) noexcept;
 
     /**
-     * @brief Gets the number of remaining Compute Instances available of size n_slices a
-     * on this GPU Instance.
+     * @brief Gets the number of remaining Compute Instances available of size
+     * n_slices a on this GPU Instance.
      * @param n_slices The number of slices
      */
     unsigned int
@@ -100,7 +102,7 @@ public:
     /**
      * @brief Create a ComputeInstance
      * @param gpu on this GPUInstance
-     * @param n_slices with this many slices 
+     * @param n_slices with this many slices
      * This constructor takes ownership of a GPU instance and manages its
      * lifetime.
      */
@@ -109,7 +111,7 @@ public:
     /**
      * @brief Create a ComputeInstance
      * @param gpu on this GPUInstance
-     * @param n_clies with this many slices 
+     * @param n_clies with this many slices
      * This constructor refers to an existing GPU instance
      */
     ComputeInstance(GPUInstance &gpu_instance, unsigned int n_slices);

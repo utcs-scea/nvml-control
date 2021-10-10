@@ -83,9 +83,10 @@ TEST_F(NvmlControlGPUInstance, ComputeInstance_ConstructOverCapacity) {
     ASSERT_THROW(mut::ComputeInstance(gpu_instance_, 1), std::runtime_error);
 }
 
-TEST_F(NvmlControlGPUInstance, ComputeInstance_DifferentCudaVisibleDevicesStrings) {
+TEST_F(NvmlControlGPUInstance,
+       ComputeInstance_DifferentCudaVisibleDevicesStrings) {
     mut::ComputeInstance ci1(gpu_instance_, 3);
     mut::ComputeInstance ci2(gpu_instance_, 4);
     ASSERT_NE(ci1.get_cuda_visible_devices_string(),
-                 ci2.get_cuda_visible_devices_string());
+              ci2.get_cuda_visible_devices_string());
 }

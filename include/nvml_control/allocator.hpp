@@ -59,8 +59,9 @@ public:
 class SharedGIAllocator : public Allocator {
 private:
     GPUInstance gpu_instance_;
+
 public:
-    SharedGIAllocator(GPU& device);
+    SharedGIAllocator(GPU &device);
     ComputeInstance allocate(unsigned short n_slices) override;
     unsigned int remaining(unsigned short n_slices) const noexcept override;
     void free(ComputeInstance &&instance) override;

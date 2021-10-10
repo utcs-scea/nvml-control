@@ -1,5 +1,5 @@
-#include "nvml_control/allocator.hpp"
 #include "error.hpp"
+#include "nvml_control/allocator.hpp"
 
 #include <thread>
 
@@ -20,7 +20,8 @@ ComputeInstance IsolatedGIAllocator::allocate(unsigned short n_slices) {
     return compute_instance;
 }
 
-unsigned int IsolatedGIAllocator::remaining(unsigned short n_slices) const noexcept {
+unsigned int
+IsolatedGIAllocator::remaining(unsigned short n_slices) const noexcept {
     return device_.remaining_gpu_instance_capacity(n_slices);
 }
 

@@ -62,34 +62,34 @@ GPUInstance::GPUInstance(GPU &gpu, unsigned short size) : gpu_(&gpu) {
     valid_ = true;
 
     /* TODO move to allocator
-        constexpr unsigned int A100_MAX_PLACEMENTS = 7;
-        nvmlGpuInstancePlacement_t placements[A100_MAX_PLACEMENTS];
-        unsigned int count;
-        THROW_NVML(nvmlDeviceGetGpuInstancePossiblePlacements(
-            gpu.device_, profile_id, placements, &count));
-        bool valid = false;
-        for (unsigned int i = 0; i < count; i++)
+    constexpr unsigned int A100_MAX_PLACEMENTS = 7;
+    nvmlGpuInstancePlacement_t placements[A100_MAX_PLACEMENTS];
+    unsigned int count;
+    THROW_NVML(nvmlDeviceGetGpuInstancePossiblePlacements(
+        gpu.device_, profile_id, placements, &count));
+    bool valid = false;
+    for (unsigned int i = 0; i < count; i++)
+    {
+        if (placements[i].start == placement.start && placements[i].size ==
+   placement.size)
         {
-            if (placements[i].start == placement.start && placements[i].size ==
-       placement.size)
-            {
-                valid = true;
-                break;
-            }
+            valid = true;
+            break;
         }
-        if (!valid)
-        {
-            throw std::runtime_error("No available placements for requested
-       profile");
-        }
-        std::stack<GPUInstance> instances;
-        do {
-            // create an instance
-            instances.emplace(gpu_, placement.size);
-            // check the placement
-        } while (instances.top().placement())
-            // repeat until the instance is at the requested placement.
-    */
+    }
+    if (!valid)
+    {
+        throw std::runtime_error("No available placements for requested
+   profile");
+    }
+    std::stack<GPUInstance> instances;
+    do {
+        // create an instance
+        instances.emplace(gpu_, placement.size);
+        // check the placement
+    } while (instances.top().placement())
+        // repeat until the instance is at the requested placement.
+*/
 }
 
 GPUInstance::GPUInstance(GPUInstance &&rhs) noexcept
